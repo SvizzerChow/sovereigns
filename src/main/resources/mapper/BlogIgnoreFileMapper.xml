@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.chow.web.sovereigns.mapper.BlogIgnoreFileMapper">
+  <resultMap id="BaseResultMap" type="ink.chow.web.sovereigns.entity.BlogIgnoreFile">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="md5" jdbcType="VARCHAR" property="md5" />
+    <result column="date_create" jdbcType="TIMESTAMP" property="dateCreate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, file_name, md5, date_create
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog_ignore_file
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_blog_ignore_file
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="ink.chow.web.sovereigns.entity.BlogIgnoreFile" useGeneratedKeys="true">
+    insert into t_blog_ignore_file (file_name, md5, date_create
+      )
+    values (#{fileName,jdbcType=VARCHAR}, #{md5,jdbcType=VARCHAR}, #{dateCreate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="ink.chow.web.sovereigns.entity.BlogIgnoreFile" useGeneratedKeys="true">
+    insert into t_blog_ignore_file
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="md5 != null">
+        md5,
+      </if>
+      <if test="dateCreate != null">
+        date_create,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="md5 != null">
+        #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreate != null">
+        #{dateCreate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ink.chow.web.sovereigns.entity.BlogIgnoreFile">
+    update t_blog_ignore_file
+    <set>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="md5 != null">
+        md5 = #{md5,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCreate != null">
+        date_create = #{dateCreate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ink.chow.web.sovereigns.entity.BlogIgnoreFile">
+    update t_blog_ignore_file
+    set file_name = #{fileName,jdbcType=VARCHAR},
+      md5 = #{md5,jdbcType=VARCHAR},
+      date_create = #{dateCreate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.chow.web.sovereigns.mapper.ex.ServerPropertiesMapperEx">
+  <resultMap id="BaseResultMap" type="ink.chow.web.sovereigns.entity.ServerProperties">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="property_key" jdbcType="VARCHAR" property="propertyKey" />
+    <result column="property_value" jdbcType="VARCHAR" property="propertyValue" />
+    <result column="property_type" jdbcType="INTEGER" property="propertyType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, property_key, property_value, property_type
+  </sql>
+  <select id="selectByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_server_properties
+    where property_key = #{propertyKey} and property_type = #{type}
+  </select>
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.chow.web.sovereigns.mapper.PushLogMapper">
+  <resultMap id="BaseResultMap" type="ink.chow.web.sovereigns.entity.PushLog">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="result" jdbcType="INTEGER" property="result" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="push_date" jdbcType="TIMESTAMP" property="pushDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, message_id, `result`, reason, push_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_push_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_push_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="ink.chow.web.sovereigns.entity.PushLog" useGeneratedKeys="true">
+    insert into t_push_log (message_id, `result`, reason, 
+      push_date)
+    values (#{messageId,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, #{reason,jdbcType=VARCHAR}, 
+      #{pushDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="ink.chow.web.sovereigns.entity.PushLog" useGeneratedKeys="true">
+    insert into t_push_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        message_id,
+      </if>
+      <if test="result != null">
+        `result`,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="pushDate != null">
+        push_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="messageId != null">
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        #{result,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="pushDate != null">
+        #{pushDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ink.chow.web.sovereigns.entity.PushLog">
+    update t_push_log
+    <set>
+      <if test="messageId != null">
+        message_id = #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="result != null">
+        `result` = #{result,jdbcType=INTEGER},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="pushDate != null">
+        push_date = #{pushDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ink.chow.web.sovereigns.entity.PushLog">
+    update t_push_log
+    set message_id = #{messageId,jdbcType=VARCHAR},
+      `result` = #{result,jdbcType=INTEGER},
+      reason = #{reason,jdbcType=VARCHAR},
+      push_date = #{pushDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

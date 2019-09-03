@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.chow.web.sovereigns.mapper.PushMessageReceiverMapper">
+  <resultMap id="BaseResultMap" type="ink.chow.web.sovereigns.entity.PushMessageReceiver">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="receiver_key" jdbcType="VARCHAR" property="receiverKey" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate" />
+    <result column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="receiver_type" jdbcType="INTEGER" property="receiverType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, receiver_key, create_date, update_date, delete_date, message_id, receiver_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_push_message_receiver
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_push_message_receiver
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="ink.chow.web.sovereigns.entity.PushMessageReceiver" useGeneratedKeys="true">
+    insert into t_push_message_receiver (receiver_key, create_date, update_date, 
+      delete_date, message_id, receiver_type
+      )
+    values (#{receiverKey,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{deleteDate,jdbcType=TIMESTAMP}, #{messageId,jdbcType=VARCHAR}, #{receiverType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="ink.chow.web.sovereigns.entity.PushMessageReceiver" useGeneratedKeys="true">
+    insert into t_push_message_receiver
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="receiverKey != null">
+        receiver_key,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="deleteDate != null">
+        delete_date,
+      </if>
+      <if test="messageId != null">
+        message_id,
+      </if>
+      <if test="receiverType != null">
+        receiver_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="receiverKey != null">
+        #{receiverKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteDate != null">
+        #{deleteDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageId != null">
+        #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverType != null">
+        #{receiverType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ink.chow.web.sovereigns.entity.PushMessageReceiver">
+    update t_push_message_receiver
+    <set>
+      <if test="receiverKey != null">
+        receiver_key = #{receiverKey,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteDate != null">
+        delete_date = #{deleteDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="messageId != null">
+        message_id = #{messageId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverType != null">
+        receiver_type = #{receiverType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ink.chow.web.sovereigns.entity.PushMessageReceiver">
+    update t_push_message_receiver
+    set receiver_key = #{receiverKey,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      delete_date = #{deleteDate,jdbcType=TIMESTAMP},
+      message_id = #{messageId,jdbcType=VARCHAR},
+      receiver_type = #{receiverType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

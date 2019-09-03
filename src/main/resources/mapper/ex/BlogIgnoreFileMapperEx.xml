@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ink.chow.web.sovereigns.mapper.ex.BlogIgnoreFileMapperEx">
+  <resultMap id="BaseResultMap" type="ink.chow.web.sovereigns.entity.BlogIgnoreFile">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
+    <result column="md5" jdbcType="VARCHAR" property="md5" />
+    <result column="date_create" jdbcType="TIMESTAMP" property="dateCreate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, file_name, md5, date_create
+  </sql>
+  <select id="list" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_blog_ignore_file
+  </select>
+</mapper>
