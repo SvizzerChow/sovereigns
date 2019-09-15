@@ -43,7 +43,13 @@ public class WebHookController extends BaseController{
         logger.info("webhook: {}",builder.toString());
         String uuid = UUID.randomUUID().toString();
         logger.info("uuid:{} {}", uuid, updateRange);
-        ThreadUtils.submitByOneThread(()->blogService.updateBlogToSite(updateRange));
+        ThreadUtils.submitByOneThread(()->{
+            try {
+                blogService.updateBlogToSite(updateRange);
+            }catch (Exception e){
+                logger.error("同步异常", e);
+            }
+        });
         return DtoResult.success(uuid);
     }
 

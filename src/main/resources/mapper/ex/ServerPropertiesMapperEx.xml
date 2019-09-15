@@ -10,7 +10,7 @@
   <sql id="Base_Column_List">
     id, property_key, property_value, property_type
   </sql>
-  <select id="selectByKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from t_server_properties
