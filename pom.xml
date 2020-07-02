@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
         <mybaits.version>1.3.2</mybaits.version>
-        <mysql.driver.version>8.0.13</mysql.driver.version>
+        <mysql.driver.version>8.0.16</mysql.driver.version>
         <netty.version>4.1.31.Final</netty.version>
         <dingtalk.version>0.9.0-SNAPSHOT</dingtalk.version>
         <chow.util.common.version>1.0.0</chow.util.common.version>
